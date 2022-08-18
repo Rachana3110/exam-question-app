@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Footer = styled.section`
   background-color: #ffffff;
@@ -33,29 +34,31 @@ const QuestionHeader = styled.h1`
 const ReadOnlyForm = () => {
   const location = useLocation();
   const [readData, setReadData] = useState(null);
+  const navigate = useNavigate();
+
   const data = location.state.questions.map((q, i) => {
     return { question: q.question, selectedoption: q.selectedoption };
   });
+
   useEffect(() => {
     const filteredData = data.filter((d) => d.selectedoption !== "");
     setReadData(filteredData);
   }, []);
-
+console.log(readData)
   const filterData =
-    readData === []
+    readData !== null
       ? readData.map((k, i) => k.question + " : " + k.selectedoption)
       : "No Data";
   const handleSubmit = (event) => {
-    alert(filterData);
+    alert(filterData)
+    navigate('/')
+    console.log(filterData)
   };
 
-  const handleChange = (event) => {
-    console.log(event.target.value);
-  };
   return (
     <>
       <QuestionHeader>Multiple Choice Questions</QuestionHeader>
-      <Form onChange={handleChange}>
+      <Form>
         {location.state.questions &&
           location.state.questions.map((q, i) => {
             return (

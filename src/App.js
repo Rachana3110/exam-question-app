@@ -7,6 +7,7 @@ function App() {
   return (
     <BrowserRouter>
     <div className="App">
+      {/* Includes all routes of this app*/}
       <Router />
     </div>
     </BrowserRouter>

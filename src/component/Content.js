@@ -10,14 +10,14 @@ const Footer = styled.section`
 `;
 const FooterButton = styled.button`
   background-color: red;
-  float:right;
-  margin: 10px
+  float: right;
+  margin: 10px;
 `;
 const ElementComp = styled.section`
   background-color: #ffffff;
   padding: 1rem;
   margin-bottom: 1rem;
-  width: 700px
+  width: 700px;
 `;
 
 const QuestionHeader = styled.h1`
@@ -43,13 +43,14 @@ const Content = () => {
 
   const { questions } = dataItems ?? {};
 
+  // navigate to Read Only Form on click of Next button
   const handleSubmit = (event) => {
     event.preventDefault();
     navigate("readonlyform", { state: dataItems });
   };
 
+  // Handle Change on form submit
   const handleChange = (id, event) => {
-    event.preventDefault();
     const newDataItems = { ...dataItems };
     newDataItems.questions.forEach((question) => {
       const { questionid, questiontype } = question;
@@ -73,14 +74,14 @@ const Content = () => {
       <div className="App container">
         <QuestionHeader>Multiple Choice Questions</QuestionHeader>
         <Form>
-            {questions
-              ? questions.map((q, i) => (
-                  <ElementComp key={i}>
-                      {q.question}
-                      <Element key={i} questions={q} />
-                  </ElementComp>
-                ))
-              : null}
+          {questions
+            ? questions.map((q, i) => (
+                <ElementComp key={i}>
+                  {q.question}
+                  <Element key={i} questions={q} />
+                </ElementComp>
+              ))
+            : null}
         </Form>
       </div>
       <Footer>
